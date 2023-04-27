@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-catalog
+  namespace: kasten-io
+spec:
+  ingress:
+  - ports:
+    - port: 8000
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      release: k10
+      run: catalog-svc
+  policyTypes:
+  - Ingress
+status: {}
